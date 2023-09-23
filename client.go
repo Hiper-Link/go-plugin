@@ -615,7 +615,9 @@ func (c *Client) Start() (addr net.Addr, err error) {
 		cmd.Env = append(cmd.Env, os.Environ()...)
 	}
 	cmd.Env = append(cmd.Env, env...)
-	cmd.Stdin = os.Stdin
+	if cmd.Stdin == nil {
+		cmd.Stdin = os.Stdin
+	}
 
 	if c.config.SecureConfig != nil {
 		if ok, err := c.config.SecureConfig.Check(cmd.Path); err != nil {
