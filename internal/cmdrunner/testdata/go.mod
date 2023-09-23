@@ -2,9 +2,9 @@ module example.com/testdata
 
 go 1.19
 
-replace github.com/hashicorp/go-plugin => ../../../
+replace github.com/Hiper-Link/go-plugin => ../../../
 
-require github.com/hashicorp/go-plugin v1.4.7
+require github.com/Hiper-Link/go-plugin v1.4.7
 
 require (
 	github.com/fatih/color v1.7.0 // indirect

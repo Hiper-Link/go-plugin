@@ -25,9 +25,9 @@ import (
 	"sync/atomic"
 	"time"
 
+	"github.com/Hiper-Link/go-plugin/internal/cmdrunner"
+	"github.com/Hiper-Link/go-plugin/runner"
 	"github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/go-plugin/internal/cmdrunner"
-	"github.com/hashicorp/go-plugin/runner"
 	"google.golang.org/grpc"
 )
 

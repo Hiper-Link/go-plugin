@@ -9,7 +9,7 @@ import (
 	"net"
 	"os"
 
-	"github.com/hashicorp/go-plugin/runner"
+	"github.com/Hiper-Link/go-plugin/runner"
 )
 
 // ReattachFunc returns a function that allows reattaching to a plugin running

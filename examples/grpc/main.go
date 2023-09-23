@@ -10,8 +10,8 @@ import (
 	"os"
 	"os/exec"
 
-	"github.com/hashicorp/go-plugin"
-	"github.com/hashicorp/go-plugin/examples/grpc/shared"
+	"github.com/Hiper-Link/go-plugin"
+	"github.com/Hiper-Link/go-plugin/examples/grpc/shared"
 )
 
 func main() {
