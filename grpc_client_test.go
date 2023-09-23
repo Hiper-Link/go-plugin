@@ -127,7 +127,7 @@ func TestGRPCClient_Reflection(t *testing.T) {
 	}
 
 	// TODO: maybe only assert some specific services here to make test more resilient
-	expectedSvcs := []string{"grpc.health.v1.Health", "grpc.reflection.v1alpha.ServerReflection", "grpctest.Test", "plugin.GRPCBroker", "plugin.GRPCController", "plugin.GRPCStdio"}
+	expectedSvcs := []string{"grpc.health.v1.Health", "grpc.reflection.v1.ServerReflection", "grpc.reflection.v1alpha.ServerReflection", "grpctest.Test", "plugin.GRPCBroker", "plugin.GRPCController", "plugin.GRPCStdio"}
 
 	if !reflect.DeepEqual(svcs, expectedSvcs) {
 		t.Fatalf("expected: %v\ngot: %v", expectedSvcs, svcs)
