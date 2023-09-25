@@ -30,5 +30,5 @@ service Plugin {
     rpc OnStart(EventsRequest) returns (EventsResponse);
     rpc OnStop(EventsRequest) returns (EventsResponse);
     rpc Interaction(InteractionRequest) returns (InteractionResponse);
-    rpc UIFramework(EventsRequest) returns (EventsResponse);
+    rpc UIFramework(EventsRequest) returns (InteractionResponse);
 }
