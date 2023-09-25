@@ -90,12 +90,12 @@ func (m *GRPCClient) Interaction(pluginInterface string, function string, args [
 	return resp.Value, nil
 }
 
-func (m *GRPCClient) UIFramework(pluginInterface string) (string, error) {
+func (m *GRPCClient) UIFramework(pluginInterface string) ([]byte, error) {
 	resp, err := m.client.UIFramework(context.Background(), &proto.EventsRequest{
 		PluginInterface: pluginInterface,
 	})
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 
 	return resp.Value, nil
@@ -142,7 +142,7 @@ func (m *GRPCServer) Interaction(ctx context.Context, req *proto.InteractionRequ
 	return &proto.InteractionResponse{Value: v}, err
 }
 
-func (m *GRPCServer) UIFramework(ctx context.Context, req *proto.EventsRequest) (*proto.InteractionResponse, error) {
+func (m *GRPCServer) UIFramework(ctx context.Context, req *proto.EventsRequest) (*proto.EventsResponse, error) {
 	v, err := m.Impl.UIFramework(req.PluginInterface)
-	return &proto.InteractionResponse{Value: v}, err
+	return &proto.EventsResponse{Value: v}, err
 }

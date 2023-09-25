@@ -28,7 +28,7 @@ type API interface {
 	OnStart(config string) ([]byte, error)                                     // HL 启动
 	OnStop(config string) ([]byte, error)                                      // HL 停止
 	Interaction(config string, function string, args []string) (string, error) // 前后端交互
-	UIFramework(config string) (string, error)                                 // UI框架
+	UIFramework(config string) ([]byte, error)                                 // UI框架
 	// Config(config string) ([]byte, error)      // 配置文件读取写入 返回 !null 将写入配置
 }
 

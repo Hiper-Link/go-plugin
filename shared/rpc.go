@@ -109,7 +109,7 @@ func (m *RPCServer) Interaction(args map[string]interface{}, resp *string) error
 	return err
 }
 
-func (m *RPCServer) UIFramework(pluginInterface string, resp *string) error {
+func (m *RPCServer) UIFramework(pluginInterface string, resp *[]byte) error {
 	v, err := m.Impl.UIFramework(pluginInterface)
 	*resp = v
 	return err
