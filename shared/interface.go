@@ -22,15 +22,15 @@ type PluginInterface struct {
 
 // 插件可调用接口
 type API interface {
-	OnLoad(config string) ([]byte, error)                       // 加载
-	OnUnload(config string) ([]byte, error)                     // 取消启用
-	OnInstall(config string) ([]byte, error)                    // 安装插件
-	OnUninstall(config string) ([]byte, error)                  // 卸载插件
-	OnStart(config string) ([]byte, error)                      // HL 启动
-	OnStop(config string) ([]byte, error)                       // HL 停止
-	Interaction(config string, function string) (string, error) // 前后端交互
+	OnLoad(config string) ([]byte, error)                                      // 加载
+	OnUnload(config string) ([]byte, error)                                    // 取消启用
+	OnInstall(config string) ([]byte, error)                                   // 安装插件
+	OnUninstall(config string) ([]byte, error)                                 // 卸载插件
+	OnStart(config string) ([]byte, error)                                     // HL 启动
+	OnStop(config string) ([]byte, error)                                      // HL 停止
+	Interaction(config string, function string, args []string) (string, error) // 前后端交互
+	UIFramework(config string) ([]byte, error)                                 // UI框架
 	// Config(config string) ([]byte, error)      // 配置文件读取写入 返回 !null 将写入配置
-	UIFramework(config string) ([]byte, error) // UI框架
 }
 
 // netRPC 配置

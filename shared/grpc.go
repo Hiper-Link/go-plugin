@@ -77,10 +77,11 @@ func (m *GRPCClient) OnStop(pluginInterface string) ([]byte, error) {
 	return resp.Value, nil
 }
 
-func (m *GRPCClient) Interaction(pluginInterface string, function string) (string, error) {
+func (m *GRPCClient) Interaction(pluginInterface string, function string, args []string) (string, error) {
 	resp, err := m.client.Interaction(context.Background(), &proto.InteractionRequest{
 		PluginInterface: pluginInterface,
 		Function:        function,
+		Args:            args,
 	})
 	if err != nil {
 		return "", err
@@ -106,58 +107,42 @@ type GRPCServer struct {
 	Impl API
 }
 
-func (m *GRPCServer) OnLoad(
-	ctx context.Context,
-	req *proto.EventsRequest) (*proto.EventsResponse, error) {
+func (m *GRPCServer) OnLoad(ctx context.Context, req *proto.EventsRequest) (*proto.EventsResponse, error) {
 	v, err := m.Impl.OnLoad(req.PluginInterface)
 	return &proto.EventsResponse{Value: v}, err
 }
 
-func (m *GRPCServer) OnUnload(
-	ctx context.Context,
-	req *proto.EventsRequest) (*proto.EventsResponse, error) {
+func (m *GRPCServer) OnUnload(ctx context.Context, req *proto.EventsRequest) (*proto.EventsResponse, error) {
 	v, err := m.Impl.OnUnload(req.PluginInterface)
 	return &proto.EventsResponse{Value: v}, err
 }
 
-func (m *GRPCServer) OnInstall(
-	ctx context.Context,
-	req *proto.EventsRequest) (*proto.EventsResponse, error) {
+func (m *GRPCServer) OnInstall(ctx context.Context, req *proto.EventsRequest) (*proto.EventsResponse, error) {
 	v, err := m.Impl.OnInstall(req.PluginInterface)
 	return &proto.EventsResponse{Value: v}, err
 }
 
-func (m *GRPCServer) OnUninstall(
-	ctx context.Context,
-	req *proto.EventsRequest) (*proto.EventsResponse, error) {
+func (m *GRPCServer) OnUninstall(ctx context.Context, req *proto.EventsRequest) (*proto.EventsResponse, error) {
 	v, err := m.Impl.OnUninstall(req.PluginInterface)
 	return &proto.EventsResponse{Value: v}, err
 }
 
-func (m *GRPCServer) OnStart(
-	ctx context.Context,
-	req *proto.EventsRequest) (*proto.EventsResponse, error) {
+func (m *GRPCServer) OnStart(ctx context.Context, req *proto.EventsRequest) (*proto.EventsResponse, error) {
 	v, err := m.Impl.OnStart(req.PluginInterface)
 	return &proto.EventsResponse{Value: v}, err
 }
 
-func (m *GRPCServer) OnStop(
-	ctx context.Context,
-	req *proto.EventsRequest) (*proto.EventsResponse, error) {
+func (m *GRPCServer) OnStop(ctx context.Context, req *proto.EventsRequest) (*proto.EventsResponse, error) {
 	v, err := m.Impl.OnStop(req.PluginInterface)
 	return &proto.EventsResponse{Value: v}, err
 }
 
-func (m *GRPCServer) Interaction(
-	ctx context.Context,
-	req *proto.InteractionRequest) (*proto.InteractionResponse, error) {
-	v, err := m.Impl.Interaction(req.PluginInterface, req.Function)
+func (m *GRPCServer) Interaction(ctx context.Context, req *proto.InteractionRequest) (*proto.InteractionResponse, error) {
+	v, err := m.Impl.Interaction(req.PluginInterface, req.Function, req.Args)
 	return &proto.InteractionResponse{Value: v}, err
 }
 
-func (m *GRPCServer) UIFramework(
-	ctx context.Context,
-	req *proto.EventsRequest) (*proto.EventsResponse, error) {
+func (m *GRPCServer) UIFramework(ctx context.Context, req *proto.EventsRequest) (*proto.EventsResponse, error) {
 	v, err := m.Impl.UIFramework(req.PluginInterface)
 	return &proto.EventsResponse{Value: v}, err
 }

@@ -45,11 +45,12 @@ func (m *RPCClient) OnStop(pluginInterface string) ([]byte, error) {
 	return resp, err
 }
 
-func (m *RPCClient) Interaction(pluginInterface string, function string) (string, error) {
+func (m *RPCClient) Interaction(pluginInterface string, function string, args []string) (string, error) {
 	var resp string
 	err := m.client.Call("Plugin.Interaction", map[string]interface{}{
 		"pluginInterface": pluginInterface,
 		"function":        function,
+		"args":            args,
 	}, &resp)
 	return resp, err
 }
@@ -103,7 +104,7 @@ func (m *RPCServer) OnStop(pluginInterface string, resp *[]byte) error {
 }
 
 func (m *RPCServer) Interaction(args map[string]interface{}, resp *string) error {
-	v, err := m.Impl.Interaction(args["pluginInterface"].(string), args["function"].(string))
+	v, err := m.Impl.Interaction(args["pluginInterface"].(string), args["function"].(string), args["args"].([]string))
 	*resp = v
 	return err
 }

@@ -15,6 +15,7 @@ message EventsResponse {
 message InteractionRequest {
     string pluginInterface = 1;
     string function = 2;
+    repeated string args = 3;
 }
 
 message InteractionResponse {
